@@ -288,7 +288,24 @@
     letter-spacing:0.06em; flex-wrap:wrap; gap:12px;
   }
 
-  @media (max-width:760px){
+  /* PC — 1440px and up */
+  @media (min-width:1440px){
+    .wrap{ max-width:1240px; padding:0 48px; }
+    section{ padding:136px 0; }
+    .hero{ padding-top:132px; padding-bottom:96px; }
+  }
+
+  /* Tablet — 768px to 1439px */
+  @media (min-width:768px) and (max-width:1439px){
+    .wrap{ padding:0 32px; }
+    section{ padding:96px 0; }
+    .about-grid{ grid-template-columns:200px 1fr; gap:40px; }
+    .meta-list{ grid-column:1 / -1; flex-direction:row; flex-wrap:wrap; gap:32px; margin-top:8px; }
+    .row{ grid-template-columns:1fr auto 100px; }
+  }
+
+  /* Phone — up to 767px, tuned for a 375px viewport */
+  @media (max-width:767px){
     .wrap{ padding:0 24px; }
     header.scrolled .mark{ transform:translateX(-32px); }
     .about-grid{ grid-template-columns:1fr; gap:48px; }
@@ -296,6 +313,16 @@
     .swatch{ display:none; }
     .scroll-cue{ display:none; }
     section{ padding:80px 0; }
+  }
+
+  /* Small phone fine-tune — 375px and below */
+  @media (max-width:375px){
+    .wrap{ padding:0 18px; }
+    .hero-tag{ font-size:15px; max-width:none; }
+    section{ padding:64px 0; }
+    .about-photo{ max-width:180px; }
+    .contact-foot{ gap:20px; }
+    footer{ flex-direction:column; align-items:flex-start; gap:8px; }
   }
 
   @media (prefers-reduced-motion: reduce){

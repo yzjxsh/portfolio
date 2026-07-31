@@ -274,7 +274,27 @@ footer{
 footer a:hover{ color:var(--signal); }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:760px){
+/* PC — 1440px and up */
+@media (min-width:1440px){
+  .wrap{ max-width:1240px; padding:0 48px; }
+  section{ padding:112px 0; }
+  .page-hero{ padding-top:156px; padding-bottom:64px; }
+}
+
+/* Tablet — 768px to 1439px */
+@media (min-width:768px) and (max-width:1439px){
+  .wrap{ padding:0 32px; }
+  section{ padding:84px 0; }
+  .page-hero{ padding-top:128px; padding-bottom:48px; }
+  .about-hero-grid{ grid-template-columns:200px 1fr; gap:40px; }
+  .skill-grid{ grid-template-columns:repeat(2, 1fr); }
+  .case-meta{ grid-template-columns:repeat(3, 1fr); }
+  .contact-grid{ grid-template-columns:repeat(2, 1fr); }
+  .value-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+
+/* Phone — up to 767px, tuned for a 375px viewport */
+@media (max-width:767px){
   .wrap{ padding:0 22px; }
   section{ padding:64px 0; }
   .page-hero{ padding-top:112px; padding-bottom:40px; min-height:auto; }
@@ -288,12 +308,14 @@ footer a:hover{ color:var(--signal); }
   h1.page-title{ font-size:clamp(36px, 11vw, 64px); }
 }
 
-@media (max-width:480px){
+/* Small phone fine-tune — 375px and below */
+@media (max-width:375px){
   .wrap{ padding:0 18px; }
   .mark{ font-size:17px; }
   .navlinks a{ font-size:10px; letter-spacing:0.1em; }
   .navlinks{ gap:14px; }
   .case-meta{ grid-template-columns:1fr; }
+  .about-photo{ max-width:180px; }
   footer{ flex-direction:column; align-items:flex-start; gap:6px; }
 }
 
