@@ -338,12 +338,12 @@ footer a:hover{ color:var(--signal); }
 <header>
   <div class="wrap">
     <nav>
-      <a class="mark" href="index.html">j<span>·</span>salurio</a>
+      <a class="mark" href="/">j<span>·</span>salurio</a>
       <div class="navlinks">
-        <a href="works.html">Work</a>
-        <a href="stack.html">Stack</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="active">Contact</a>
+        <a href="/works/">Work</a>
+        <a href="/stack/">Stack</a>
+        <a href="/about/">About</a>
+        <a href="/contact/" class="active">Contact</a>
       </div>
     </nav>
   </div>
@@ -353,7 +353,7 @@ footer a:hover{ color:var(--signal); }
   <section class="page-hero">
     <div class="wash"></div>
     <div class="wrap">
-      <a class="back-link reveal" href="index.html">← Back home</a>
+      <a class="back-link reveal" href="/">← Back home</a>
       <div class="eyebrow reveal">Contact</div>
       <h1 class="page-title reveal">Let's <em>talk</em></h1>
       <p class="page-lede reveal">Open for freelance and web development work — from a single landing page to a full stack app with authentication and a database.</p>
@@ -433,6 +433,17 @@ footer a:hover{ color:var(--signal); }
 </footer>
 
 <script>
+  (function () {
+    var path = location.pathname;
+    if (path.endsWith('/index.html')) {
+      path = path.replace(/index\.html$/, '');
+      history.replaceState(null, '', path);
+    }
+    if (path.length > 1 && path.endsWith('/')) {
+      history.replaceState(null, '', path.slice(0, -1));
+    }
+  })();
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(!reduced){
     var els = document.querySelectorAll(".reveal");
