@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- FIX 1: shrink-to-fit=no stops mobile Safari from auto-shrinking the initial zoom to "fit" any element that is wider than the screen (this is what made the page load pre-zoomed-out). maximum-scale=5 keeps pinch-zoom available for accessibility instead of locking it, and viewport-fit=cover is kept for notch/safe-area support. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover, shrink-to-fit=no">
 <title>Selected Work | Josiah Salurio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +22,8 @@
 
 *{ box-sizing:border-box; margin:0; padding:0; }
 
-html{ scroll-behavior:smooth; }
+/* FIX 2: overflow-x:hidden added to html (not just body). Some mobile browsers only clip horizontal overflow from body's own children, not overflow caused deeper in the tree; putting the clip on both html and body closes that gap so nothing can ever force the page wider than the screen. */
+html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
 
 body{
   background:var(--bg);
@@ -35,7 +37,8 @@ body{
 ::selection{ background:var(--signal); color:#040404; }
 
 a{ color:inherit; text-decoration:none; }
-img{ max-width:100%; display:block; }
+/* FIX 3: video added alongside img (site has no <video> yet, but this future-proofs any that get added so they can never overflow the viewport). height:auto keeps aspect ratio correct when width is constrained. */
+img, video{ max-width:100%; height:auto; display:block; }
 
 .reveal{
   opacity:0; transform:translateY(26px);
@@ -90,6 +93,7 @@ nav{ display:flex; align-items:center; justify-content:space-between; }
 .page-hero{
   min-height:52vh; display:flex; flex-direction:column; justify-content:center;
   padding-top:140px; padding-bottom:56px; position:relative; border-top:none;
+  overflow:hidden; /* FIX 5: keep the decorative .wash glow from overflowing the viewport */
 }
 .eyebrow{
   font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.18em;
