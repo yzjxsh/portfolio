@@ -73,18 +73,11 @@
   /* ---------- NAV ---------- */
   header{
     position:fixed; top:0; left:0; right:0; z-index:50;
-    padding:22px 0;
-    background:rgba(4,4,4,0.72);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(242,241,236,0.08);
-    transition:background .4s ease, border-color .4s ease, padding .4s ease, box-shadow .4s ease;
-  }
-  header.scrolled{
     padding:16px 0;
     background:rgba(4,4,4,0.92);
-    border-bottom-color:rgba(242,241,236,0.12);
-    box-shadow:0 12px 32px rgba(0,0,0,0.35);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(242,241,236,0.12);
   }
   nav{ display:flex; align-items:center; justify-content:space-between; }
   .mark{
@@ -318,7 +311,6 @@
   /* Phone — up to 767px, tuned for a 375px viewport */
   @media (max-width:767px){
     .wrap{ padding:0 24px; }
-    header.scrolled .mark{ transform:translateX(-32px); }
     .about-grid{ grid-template-columns:1fr; gap:48px; }
     /* FIX 4 continued: single flexible column, title and meta stack instead of
        sitting side by side, so there is no "auto" track left that still has to
@@ -357,7 +349,7 @@
 <header>
   <div class="wrap">
     <nav>
-      <div class="mark">j<span>·</span>salurio</div>
+      <a class="mark" href="index.html">j<span>·</span>salurio</a>
       <div class="navlinks">
         <a href="works.html">Work</a>
         <a href="stack.html">Stack</a>
@@ -503,16 +495,6 @@
 <script>
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasHover = window.matchMedia('(hover: hover)').matches;
-
-  var header = document.querySelector('header');
-  var heroEl = document.querySelector('.hero');
-  function checkScroll(){
-    var threshold = heroEl.offsetHeight * 0.6;
-    if(window.scrollY > threshold){ header.classList.add('scrolled'); }
-    else{ header.classList.remove('scrolled'); }
-  }
-  window.addEventListener('scroll', checkScroll, { passive:true });
-  checkScroll();
 
   if(!reduced){
     var els = document.querySelectorAll('.reveal');
