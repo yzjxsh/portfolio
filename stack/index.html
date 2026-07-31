@@ -473,9 +473,6 @@ footer a:hover{ color:var(--signal); }
       path = path.replace(/index\.html$/, '');
       history.replaceState(null, '', path);
     }
-    if (path.length > 1 && path.endsWith('/')) {
-      history.replaceState(null, '', path.slice(0, -1));
-    }
   })();
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

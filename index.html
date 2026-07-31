@@ -498,17 +498,15 @@
 
 <script>
   // Silently tidy the URL: if someone lands on .../index.html, show .../
-  // instead, then drop the trailing slash too. history.replaceState only
-  // rewrites what's in the address bar — it doesn't reload or navigate,
-  // so there's no flash or extra request.
+  // instead. history.replaceState only rewrites what's in the address bar —
+  // it doesn't reload or navigate, so there's no flash or extra request.
+  // (Trailing slash is kept: GitHub Pages only serves a folder's index.html
+  // when the URL ends in "/" — it doesn't redirect "/works" to "/works/".)
   (function () {
     var path = location.pathname;
     if (path.endsWith('/index.html')) {
       path = path.replace(/index\.html$/, '');
       history.replaceState(null, '', path);
-    }
-    if (path.length > 1 && path.endsWith('/')) {
-      history.replaceState(null, '', path.slice(0, -1));
     }
   })();
 
