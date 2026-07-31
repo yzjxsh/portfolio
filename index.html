@@ -497,6 +497,13 @@
 </footer>
 
 <script>
+  // Silently tidy the URL: if someone lands on .../index.html, show .../
+  // instead. history.replaceState only rewrites what's in the address bar —
+  // it doesn't reload or navigate, so there's no flash or extra request.
+  if (location.pathname.endsWith('/index.html')) {
+    history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
+  }
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasHover = window.matchMedia('(hover: hover)').matches;
 
