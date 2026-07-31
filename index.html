@@ -310,7 +310,8 @@
 
   /* Phone — up to 767px, tuned for a 375px viewport */
   @media (max-width:767px){
-    .wrap{ padding:0 24px; }
+    .wrap{ padding:0 22px; }
+    .navlinks{ gap:20px; } /* match works/about/stack/contact nav spacing on phones */
     .about-grid{ grid-template-columns:1fr; gap:48px; }
     /* FIX 4 continued: single flexible column, title and meta stack instead of
        sitting side by side, so there is no "auto" track left that still has to
@@ -325,6 +326,9 @@
   /* Small phone fine-tune — 375px and below */
   @media (max-width:375px){
     .wrap{ padding:0 18px; }
+    .mark{ font-size:17px; }
+    .navlinks a{ font-size:10px; letter-spacing:0.1em; }
+    .navlinks{ gap:14px; }
     .hero-tag{ font-size:15px; max-width:none; }
     section{ padding:64px 0; }
     .about-photo{ max-width:180px; }
