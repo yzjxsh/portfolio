@@ -353,12 +353,12 @@
 <header>
   <div class="wrap">
     <nav>
-      <a class="mark" href="index.html">j<span>·</span>salurio</a>
+      <a class="mark" href="/">j<span>·</span>salurio</a>
       <div class="navlinks">
-        <a href="works.html">Work</a>
-        <a href="stack.html">Stack</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="/works/">Work</a>
+        <a href="/stack/">Stack</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
       </div>
     </nav>
   </div>
@@ -408,7 +408,7 @@
         <div class="swatch"></div>
       </a>
       <div class="reveal" style="margin-top:40px;">
-        <a href="works.html" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">View full case studies ↗</a>
+        <a href="/works/" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">View full case studies ↗</a>
       </div>
     </div>
   </section>
@@ -430,7 +430,7 @@
         <span class="tag">Responsive design</span>
       </div>
       <div class="reveal" style="margin-top:40px;">
-        <a href="stack.html" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">See the full stack breakdown ↗</a>
+        <a href="/stack/" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">See the full stack breakdown ↗</a>
       </div>
     </div>
   </section>
@@ -468,7 +468,7 @@
         </dl>
       </div>
       <div class="reveal" style="margin-top:48px;">
-        <a href="about.html" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">More about my story ↗</a>
+        <a href="/about/" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">More about my story ↗</a>
       </div>
     </div>
   </section>
@@ -483,7 +483,7 @@
         <span>Calbayog City, Samar, Philippines</span>
       </div>
       <div style="margin-top:40px;">
-        <a href="contact.html" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">Full contact page &amp; FAQ ↗</a>
+        <a href="/contact/" style="font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--signal); border-bottom:1px solid rgba(47,86,255,0.4); padding-bottom:3px;">Full contact page &amp; FAQ ↗</a>
       </div>
     </div>
   </section>
@@ -498,11 +498,19 @@
 
 <script>
   // Silently tidy the URL: if someone lands on .../index.html, show .../
-  // instead. history.replaceState only rewrites what's in the address bar —
-  // it doesn't reload or navigate, so there's no flash or extra request.
-  if (location.pathname.endsWith('/index.html')) {
-    history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
-  }
+  // instead, then drop the trailing slash too. history.replaceState only
+  // rewrites what's in the address bar — it doesn't reload or navigate,
+  // so there's no flash or extra request.
+  (function () {
+    var path = location.pathname;
+    if (path.endsWith('/index.html')) {
+      path = path.replace(/index\.html$/, '');
+      history.replaceState(null, '', path);
+    }
+    if (path.length > 1 && path.endsWith('/')) {
+      history.replaceState(null, '', path.slice(0, -1));
+    }
+  })();
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasHover = window.matchMedia('(hover: hover)').matches;
